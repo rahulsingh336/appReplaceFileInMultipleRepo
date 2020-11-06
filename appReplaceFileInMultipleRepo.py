@@ -7,7 +7,7 @@ nodejs_lambda=["reponame"]
 
 def processRepo(repoName, src):    
     # Check out via HTTPS
-    git.Repo.clone_from('https://github.com/nice-cxone/'+repoName, repoName)
+    git.Repo.clone_from('REPOURL'+repoName, repoName)
     repo = git.Repo(repoName)
     path = './'+ repoName
     owd = os.getcwd()
@@ -16,10 +16,10 @@ def processRepo(repoName, src):
     print(os.getcwd())
 
     # Create a new branch
-    repo.git.branch('UH-10393')
+    repo.git.branch('BRANCHNAME')
 
     # You need to check out the branch after creating it if you want to use it
-    repo.git.checkout('UH-10393')
+    repo.git.checkout('BRANCHNAME')
 
     ##Copy Template
     #identify template location based on type
@@ -36,11 +36,11 @@ def processRepo(repoName, src):
     repo.index.add(['Jenkinsfile'])
 
     # Provide a commit message
-    repo.index.commit('https://tlvjira02.nice.com/browse/UH-10393 Updated jenkins file')
+    repo.index.commit('COMMIT MESSAGE')
     origin = repo.remote()
-    repo.create_head('UH-10393')
+    repo.create_head('BRANCHNAME')
     # Push changes
-    origin.push('UH-10393')
+    origin.push('BRANCHNAME')
     os.chdir(owd)
 
 for x in ms: 
